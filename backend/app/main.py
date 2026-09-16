@@ -23,27 +23,17 @@ ALWAYS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3001",
     "https://jkpos-lime.vercel.app",
-    "https://jkpos-e06dex3x3-jkvulcanizacion.vercel.app"
+    "https://jkpos-e06dex3x3-jkvulcanizacion.vercel.app",
 ]
 
 env_origins = [str(o) for o in settings.CORS_ORIGINS] if settings.CORS_ORIGINS else []
 
 if "*" in env_origins or not env_origins:
-    origins = ["*"]
+    clean_origins = ["*"]
+    allow_origin_regex = None
 else:
-    origins = list(set(env_origins + ALWAYS_ALLOWED_ORIGINS))
-
-clean_origins = []
-origin_regex_list = [r"https://.*\.vercel\.app"]
-for origin in origins:
-    if "*" in origin and origin != "*":
-        import re
-        regex = "^" + re.escape(origin).replace(r"\*", ".*") + "$"
-        origin_regex_list.append(regex)
-    else:
-        clean_origins.append(origin)
-
-allow_origin_regex = "|".join(origin_regex_list) if origin_regex_list else None
+    clean_origins = list(set(env_origins + ALWAYS_ALLOWED_ORIGINS))
+    allow_origin_regex = r"https://.*\.vercel\.app"
 
 print(f"[CORS] Allowed origins: {clean_origins}")
 if allow_origin_regex:
