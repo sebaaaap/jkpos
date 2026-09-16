@@ -97,6 +97,7 @@ import time
 def startup_event():
     retries = 3
     while retries > 0:
+        try:
             from app.models.base import Base
             Base.metadata.create_all(bind=engine)
 
