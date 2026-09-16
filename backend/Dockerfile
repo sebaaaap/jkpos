@@ -19,6 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY ./app ./app
 COPY ./alembic ./alembic
 COPY ./alembic.ini .
+COPY ./create_admin.py .
 
 # Variables de entorno por defecto (serán sobrescritas por docker-compose)
 ENV DEPLOYMENT_MODE="SERVER"

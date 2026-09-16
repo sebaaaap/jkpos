@@ -45,7 +45,7 @@ export default function LoginPage() {
                         />
                     </div>
                     <h1 className="text-3xl font-black tracking-tight text-slate-900 mb-1 uppercase">
-                        JK POS
+                        JK Vulcanización
                     </h1>
                     <p className="text-xs text-slate-500 font-semibold tracking-wider uppercase">
                         Sistema de Punto de Venta e Inventario
