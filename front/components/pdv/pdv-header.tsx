@@ -113,8 +113,8 @@ export function PdvHeader({
               <img src={settings.logoBase64} alt="Logo Empresa" className="h-full w-full rounded-md object-contain" />
             </div>
           ) : (
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary shadow-sm">
-              <Wrench className="h-5 w-5 text-primary-foreground" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white p-0.5 border shadow-sm">
+              <img src="/logo.png" alt="JK POS" className="h-full w-full rounded-md object-contain" />
             </div>
           )}
           <div className="flex flex-col justify-center h-[40px] overflow-hidden relative min-w-[240px]">

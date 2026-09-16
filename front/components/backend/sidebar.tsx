@@ -61,10 +61,7 @@ export function Sidebar() {
         <aside className="hidden h-screen w-64 flex-col border-r bg-card md:flex">
             <div className="flex h-14 items-center border-b px-6">
                 <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
-                    <span className="h-6 w-6 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
-                        <Monitor size={14} />
-                    </span>
-                    <span>{isAdmin ? "Backend" : "Punto de Venta"}</span>
+                    <img src="/logo.png" alt="JK POS" className="h-8 w-auto object-contain" />
                 </Link>
             </div>
 

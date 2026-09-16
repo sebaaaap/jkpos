@@ -29,9 +29,9 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50 relative overflow-hidden p-6 text-slate-800">
             {/* Background Accent Glows */}
-            <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#eb1914]/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#eb1914]/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(#eb1914_0.6px,transparent_0.6px)] [background-size:24px_24px] opacity-[0.05] -z-10" />
+            <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#e20613]/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#e20613]/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(#e20613_0.6px,transparent_0.6px)] [background-size:24px_24px] opacity-[0.05] -z-10" />
 
             {/* Contenedor Principal Centrado */}
             <div className="w-full max-w-md relative z-10">
@@ -39,7 +39,7 @@ export default function LoginPage() {
                 <div className="text-center mb-6 animate-in fade-in slide-in-from-top-4 duration-500">
                     <div className="inline-flex items-center justify-center p-2 mb-2">
                         <img
-                            src="/logoaouto.png"
+                            src="/logocelular.png"
                             alt="Logo"
                             className="max-h-28 w-auto object-contain drop-shadow-[0_4px_12px_rgba(235,25,20,0.15)]"
                         />
@@ -68,7 +68,7 @@ export default function LoginPage() {
                                 {/* Error Alert */}
                                 {error && (
                                     <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 animate-in fade-in slide-in-from-top-2 duration-200">
-                                        <AlertCircle size={20} className="shrink-0 mt-0.5 text-[#eb1914]" />
+                                        <AlertCircle size={20} className="shrink-0 mt-0.5 text-[#e20613]" />
                                         <div className="text-sm font-medium">{error}</div>
                                     </div>
                                 )}
@@ -87,7 +87,7 @@ export default function LoginPage() {
                                             type="text"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
-                                            className="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50/80 border-2 border-slate-200/90 focus:bg-white focus:border-[#eb1914] focus:ring-4 focus:ring-[#eb1914]/15 outline-none transition-all text-slate-900 font-medium placeholder:text-slate-400"
+                                            className="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50/80 border-2 border-slate-200/90 focus:bg-white focus:border-[#e20613] focus:ring-4 focus:ring-[#e20613]/15 outline-none transition-all text-slate-900 font-medium placeholder:text-slate-400"
                                             placeholder="Ingrese su usuario"
                                             required
                                             autoFocus
@@ -110,7 +110,7 @@ export default function LoginPage() {
                                             type={showPassword ? "text" : "password"}
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className="w-full pl-12 pr-12 py-3 rounded-xl bg-slate-50/80 border-2 border-slate-200/90 focus:bg-white focus:border-[#eb1914] focus:ring-4 focus:ring-[#eb1914]/15 outline-none transition-all text-slate-900 font-medium placeholder:text-slate-400"
+                                            className="w-full pl-12 pr-12 py-3 rounded-xl bg-slate-50/80 border-2 border-slate-200/90 focus:bg-white focus:border-[#e20613] focus:ring-4 focus:ring-[#e20613]/15 outline-none transition-all text-slate-900 font-medium placeholder:text-slate-400"
                                             placeholder="Ingrese su contraseña"
                                             required
                                             disabled={isLoading}
@@ -134,7 +134,7 @@ export default function LoginPage() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-gradient-to-r from-[#eb1914] via-[#e0140f] to-[#c9120e] hover:from-[#f0201b] hover:to-[#b50e0a] text-white font-bold rounded-xl shadow-lg shadow-[#eb1914]/30 hover:shadow-xl hover:shadow-[#eb1914]/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full flex items-center justify-center gap-3 px-6 py-3.5 bg-gradient-to-r from-[#e20613] via-[#d60511] to-[#c4050f] hover:from-[#ff101e] hover:to-[#ab040c] text-white font-bold rounded-xl shadow-lg shadow-[#e20613]/30 hover:shadow-xl hover:shadow-[#e20613]/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isLoading ? (
                                         <>
@@ -152,18 +152,6 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    {/* Dino Mascota apoyado en el lateral de la Card */}
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="hidden lg:block absolute -top-[40px] -right-[270px] w-[320px] h-auto object-contain pointer-events-none z-0 opacity-95"
-                    >
-                        <source src="/dinoparao_clean.webm" type="video/webm" />
-                        <source src="/dinoparao_transparent.webm" type="video/webm" />
-                        <source src="/dinoparao.mp4" type="video/mp4" />
-                    </video>
                 </div>
 
                 {/* Footer */}
