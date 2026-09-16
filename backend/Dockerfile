@@ -27,5 +27,5 @@ ENV DATABASE_URL="postgresql://admin:password123@db:5432/pos_db"
 # Exponer puerto
 EXPOSE 8000
 
-# Comando de inicio: Migraciones automáticas + Servidor
-CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+# Comando de inicio: Intentar migraciones, arrancar servidor pase lo que pase
+CMD ["sh", "-c", "echo '=== RUNNING MIGRATIONS ===' && alembic upgrade head && echo '=== MIGRATIONS OK ===' || echo '=== MIGRATION FAILED, CHECK LOGS ===' ; uvicorn app.main:app --host 0.0.0.0 --port $PORT --log-level info"]
