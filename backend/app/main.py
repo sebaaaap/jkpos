@@ -100,7 +100,15 @@ def startup_event():
         try:
             with engine.connect() as conn:
                 conn.execute(text("SELECT 1"))
-            print("Database connected successfully!")
+                try:
+                    conn.execute(text("ALTER TABLE companies ADD COLUMN IF NOT EXISTS logo_url VARCHAR;"))
+                    conn.commit()
+                except Exception as col_err:
+                    print(f"[DB] Note on column check: {col_err}")
+
+            from app.models.base import Base
+            Base.metadata.create_all(bind=engine)
+            print("Database connected and all tables ensured successfully!")
             break
         except Exception as e:
             retries -= 1
