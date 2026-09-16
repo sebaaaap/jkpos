@@ -22,8 +22,8 @@ app = FastAPI(
 ALWAYS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3001",
-    # TODO: Agregar aquí la URL de Vercel cuando esté desplegado
-    # "https://jkpos.vercel.app",
+    "https://jkpos-lime.vercel.app",
+    "https://jkpos-e06dex3x3-jkvulcanizacion.vercel.app"
 ]
 
 env_origins = [str(o) for o in settings.CORS_ORIGINS] if settings.CORS_ORIGINS else []

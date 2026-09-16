@@ -21,8 +21,8 @@ class Settings(BaseSettings):
     CORS_ORIGINS: Union[list[str], str] = [
         "http://localhost:3000",
         "http://localhost:3001",
-        # TODO: Agregar URL de Vercel cuando esté desplegado, ej:
-        # "https://jkpos.vercel.app",
+        "https://jkpos-lime.vercel.app",
+        "https://*.vercel.app",
     ]
 
     @field_validator("CORS_ORIGINS", mode="before")
