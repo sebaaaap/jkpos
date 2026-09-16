@@ -28,16 +28,18 @@ ALWAYS_ALLOWED_ORIGINS = [
 
 env_origins = [str(o) for o in settings.CORS_ORIGINS] if settings.CORS_ORIGINS else []
 
-if "*" in env_origins or not env_origins:
-    clean_origins = ["*"]
-    allow_origin_regex = None
-else:
+# Siempre usar orígenes específicos (el wildcard * no funciona con allow_credentials=True)
+if env_origins and "*" not in env_origins:
     clean_origins = list(set(env_origins + ALWAYS_ALLOWED_ORIGINS))
-    allow_origin_regex = r"https://.*\.vercel\.app"
+else:
+    # Si env tiene * o está vacío, usar solo los hardcodeados
+    clean_origins = ALWAYS_ALLOWED_ORIGINS
+
+# Regex para aceptar cualquier deployment de Vercel automáticamente
+allow_origin_regex = r"https://.*\.vercel\.app"
 
 print(f"[CORS] Allowed origins: {clean_origins}")
-if allow_origin_regex:
-    print(f"[CORS] Allowed origin regex: {allow_origin_regex}")
+print(f"[CORS] Allowed origin regex: {allow_origin_regex}")
 
 app.add_middleware(
     CORSMiddleware,
