@@ -97,18 +97,37 @@ import time
 def startup_event():
     retries = 3
     while retries > 0:
-        try:
-            with engine.connect() as conn:
-                conn.execute(text("SELECT 1"))
-                try:
-                    conn.execute(text("ALTER TABLE companies ADD COLUMN IF NOT EXISTS logo_url VARCHAR;"))
-                    conn.commit()
-                except Exception as col_err:
-                    print(f"[DB] Note on column check: {col_err}")
-
             from app.models.base import Base
             Base.metadata.create_all(bind=engine)
-            print("Database connected and all tables ensured successfully!")
+
+            schema_fixes = [
+                "ALTER TABLE companies ADD COLUMN IF NOT EXISTS logo_url VARCHAR;",
+                "ALTER TABLE products ADD COLUMN IF NOT EXISTS is_raw_material BOOLEAN DEFAULT FALSE NOT NULL;",
+                "ALTER TABLE products ADD COLUMN IF NOT EXISTS is_scrap BOOLEAN DEFAULT FALSE NOT NULL;",
+                "ALTER TABLE products ADD COLUMN IF NOT EXISTS scrap_parent_id UUID REFERENCES products(id);",
+                "ALTER TABLE products ADD COLUMN IF NOT EXISTS is_variable_consumption BOOLEAN DEFAULT FALSE;",
+                "ALTER TABLE products ADD COLUMN IF NOT EXISTS default_consumption_rate NUMERIC(12, 3) DEFAULT 1.0;",
+                "ALTER TABLE products ALTER COLUMN stock_quantity TYPE NUMERIC(12, 4);",
+                "ALTER TABLE products ALTER COLUMN min_stock TYPE NUMERIC(12, 4);",
+                "ALTER TABLE sale_items ADD COLUMN IF NOT EXISTS consumption_rate NUMERIC(12, 3) DEFAULT 1.0;",
+                "ALTER TABLE sale_items ADD COLUMN IF NOT EXISTS stock_reduced NUMERIC(12, 4);",
+                "ALTER TABLE sale_items ALTER COLUMN quantity TYPE NUMERIC(12, 4);",
+                "ALTER TABLE inventory_movement_items ALTER COLUMN quantity TYPE NUMERIC(12, 4);",
+                "ALTER TABLE inventory_movement_items ALTER COLUMN stock_before TYPE NUMERIC(12, 4);",
+                "ALTER TABLE inventory_movement_items ALTER COLUMN stock_after TYPE NUMERIC(12, 4);",
+                "ALTER TABLE purchase_items ALTER COLUMN quantity TYPE NUMERIC(12, 4);",
+                "ALTER TABLE quote_items ALTER COLUMN quantity TYPE NUMERIC(12, 4);",
+            ]
+
+            with engine.connect() as conn:
+                for sql in schema_fixes:
+                    try:
+                        conn.execute(text(sql))
+                        conn.commit()
+                    except Exception as err:
+                        print(f"[DB] Schema auto-patch note on '{sql}': {err}")
+
+            print("Database connected, tables and columns synced successfully!")
             break
         except Exception as e:
             retries -= 1
