@@ -52,7 +52,7 @@ def upgrade() -> None:
         UPDATE customers c SET rut = CONCAT(rut, '-DUP', n.n)
         FROM (
             SELECT id, ROW_NUMBER() OVER (
-                PARTITION BY company_id, rut ORDER BY date_created ASC, id ASC
+                PARTITION BY company_id, rut ORDER BY created_at ASC, id ASC
             ) AS n
             FROM customers
         ) n
@@ -62,7 +62,7 @@ def upgrade() -> None:
         UPDATE vehicles v SET license_plate = CONCAT(license_plate, '-DUP', n.n)
         FROM (
             SELECT id, ROW_NUMBER() OVER (
-                PARTITION BY company_id, license_plate ORDER BY date_created ASC, id ASC
+                PARTITION BY company_id, license_plate ORDER BY created_at ASC, id ASC
             ) AS n
             FROM vehicles
         ) n

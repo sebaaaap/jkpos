@@ -45,7 +45,7 @@ export default function LoginPage() {
                         />
                     </div>
                     <h1 className="text-3xl font-black tracking-tight text-slate-900 mb-1 uppercase">
-                        VKI
+                        JK POS
                     </h1>
                     <p className="text-xs text-slate-500 font-semibold tracking-wider uppercase">
                         Sistema de Punto de Venta e Inventario
@@ -156,7 +156,7 @@ export default function LoginPage() {
 
                 {/* Footer */}
                 <div className="text-center mt-6 text-xs text-slate-500 animate-in fade-in duration-500 delay-200">
-                    <p>© 2026 VKI. Sistema de Gestión Empresarial.</p>
+                    <p>© 2026 JK POS. Sistema de Gestión Empresarial.</p>
                     <p className="mt-1 font-semibold text-slate-400">Powered by VankaiLabs</p>
                 </div>
             </div>
