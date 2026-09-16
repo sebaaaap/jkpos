@@ -106,7 +106,8 @@ def startup_event():
             retries -= 1
             print(f"Database connection failed. Retries left: {retries}. Error: {e}")
             if retries == 0:
-                raise RuntimeError("Critical Error: Cannot connect to PostgreSQL")
+                print("WARNING: Could not connect to database. Server will start anyway.")
+                break
             time.sleep(2)
 
     # Cleanup de activity logs > 6 meses (best-effort, no rompe el startup)
