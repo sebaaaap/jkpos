@@ -605,6 +605,12 @@ function SalesReport() {
                                 <div><span className="text-muted-foreground font-semibold">Sucursal:</span> {rowMeta?.sucursal || "Casa Matriz"}</div>
                                 <div><span className="text-muted-foreground font-semibold">Comprobante:</span> {saleDetails.document_type || "boleta"}</div>
                             </div>
+                            {(saleDetails.comment || rowMeta?.comment) && (
+                                <div className="rounded-lg border border-border bg-muted/40 px-4 py-3 text-sm">
+                                    <span className="font-semibold text-muted-foreground block mb-1">💬 Comentario:</span>
+                                    <p className="text-foreground whitespace-pre-wrap">{saleDetails.comment || rowMeta?.comment}</p>
+                                </div>
+                            )}
                             <div>
                                 <h4 className="font-semibold text-sm mb-2 border-b pb-1">Productos</h4>
                                 <div className="max-h-60 overflow-y-auto pr-2">
