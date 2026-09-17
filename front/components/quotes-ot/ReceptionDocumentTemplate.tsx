@@ -15,13 +15,13 @@ export function ReceptionDocumentTemplate({ data, otId, activeTab = "reception" 
     const { settings, isLoaded } = useSettings()
 
     // Configurable business details, fallback to static if not set
-    const logoUrl = settings.logoBase64 || "/fblogo3.png"
-    const businessName = settings.businessName || "VANKAI"
-    const businessDescription = settings.description || "KRYPTONITA VULCANIZA"
-    const address = settings.address || "Av. Central 1234, Santiago, Chile"
-    const phone = settings.phone || "+56 9 1234 5678"
-    const email = settings.email || "contacto@vankai.cl"
-    const website = settings.website || "www.vankai.cl"
+    const logoUrl = settings.logoBase64 || "/logo.png"
+    const businessName = settings.businessName || "JK Vulcanización"
+    const businessDescription = settings.description || "Sistema de Gestión — Talleres Mecánicos"
+    const address = settings.address || "Santiago, Chile"
+    const phone = settings.phone || ""
+    const email = settings.email || "contacto@jkvulcanizacion.cl"
+    const website = settings.website || ""
 
     if (!isLoaded) {
         return <div className="p-8 text-center text-muted-foreground">Cargando documento...</div>;

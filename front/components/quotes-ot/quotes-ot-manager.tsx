@@ -937,11 +937,11 @@ export function QuotesOtManager({ type }: { type: "quote" | "ot" }) {
                                     onClick={() => setQuoteTemplate("jkpos")}
                                     className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all border ${
                                         quoteTemplate === "jkpos"
-                                            ? "bg-[#eb1914] text-white border-[#eb1914] shadow-md"
+                                            ? "bg-[#e20613] text-white border-[#e20613] shadow-md"
                                             : "bg-muted text-muted-foreground border-border hover:border-primary"
                                     }`}
                                 >
-                                    🏎️ jkpos
+                                    🚗 JK Vulcanización
                                 </button>
                                 <button
                                     onClick={() => setQuoteTemplate("classic")}

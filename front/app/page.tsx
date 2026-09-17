@@ -850,17 +850,15 @@ export default function AppPage() {
         setPaidOrders((prev) => [paidOrder, ...prev])
         setShowPayment(false)
 
-        // Limpiar el pedido pagado y crear uno nuevo vacío
-        setTimeout(() => {
-          const paidIdx = currentOrderIndexRef.current
-          setOrders((prev) => {
-            const remaining = prev.filter((_, i) => i !== paidIdx)
-            return remaining.length === 0 ? [createEmptyOrder()] : remaining
-          })
-          setCurrentOrderIndex(0)
-          setSelectedLineId(null)
-          setNumpadBuffer("")
-        }, 500)
+        // Limpiar el pedido pagado y crear uno nuevo vacío inmediatamente
+        const paidIdx = currentOrderIndexRef.current
+        setOrders((prev) => {
+          const remaining = prev.filter((_, i) => i !== paidIdx)
+          return remaining.length === 0 ? [createEmptyOrder()] : remaining
+        })
+        setCurrentOrderIndex(0)
+        setSelectedLineId(null)
+        setNumpadBuffer("")
       } catch (error: any) {
         const detail = error?.response?.data?.detail
         console.error("Error al procesar la venta:", error)

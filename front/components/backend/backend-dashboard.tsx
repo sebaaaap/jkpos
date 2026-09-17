@@ -89,12 +89,16 @@ export function BackendDashboard({ onNavigate }: BackendDashboardProps) {
               className="h-12 w-auto max-w-[180px] object-contain drop-shadow-sm"
             />
           ) : (
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eb1914] shadow-md shadow-[#eb1914]/20">
-              <Wrench className="h-6 w-6 text-white" />
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="JK Vulcanización" 
+              className="h-12 w-auto max-w-[180px] object-contain drop-shadow-sm"
+            />
           )}
           <div className="border-l border-border/60 pl-4">
-            <h1 className="text-xl font-black text-foreground leading-tight tracking-tight">VKI</h1>
+            <h1 className="text-xl font-black text-foreground leading-tight tracking-tight">
+              {settings.businessName || "JK Vulcanización"}
+            </h1>
             <p className="text-xs font-semibold text-muted-foreground">Sistema de Gestión — Talleres Mecánicos</p>
           </div>
         </div>

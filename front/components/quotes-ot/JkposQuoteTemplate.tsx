@@ -36,12 +36,12 @@ export function JkposQuoteTemplate({ data, type, notaCotizacion }: JkposQuoteTem
     }
 
     // ─── Empresa (100 % desde settings) ──────────────────────────────────────
-    const logoUrl      = settings.logoBase64 || null
-    const ownerName    = "Fernando Pastrian"                        // fijo por defecto
-    const businessName = settings.businessName || "jkpos"
-    const address      = settings.address      || "Promoncaes 1403 Renca"
-    const mail         = settings.email        || "pastrianfernando@gmail.com"
-    const phone        = settings.phone        || "+569 48481417"
+    const logoUrl      = settings.logoBase64 || "/logo.png"
+    const ownerName    = settings.businessName || "JK Vulcanización"
+    const businessName = settings.businessName || "JK Vulcanización"
+    const address      = settings.address      || "Santiago, Chile"
+    const mail         = settings.email        || "contacto@jkvulcanizacion.cl"
+    const phone        = settings.phone        || "+56 9"
     const formaPago    = "Transferencia / Efectivo / Tarjetas"
     const nota         = notaCotizacion ?? ""
 
@@ -63,7 +63,7 @@ export function JkposQuoteTemplate({ data, type, notaCotizacion }: JkposQuoteTem
 
     // ─── Colores corporativos ─────────────────────────────────────────────────
     const NEGRO = "#22201f"
-    const ROJO  = "#eb1914"
+    const ROJO  = "#e20613"
 
     // ─── Paths SVG (derivados 1:1 del TikZ en mm) ────────────────────────────
     //

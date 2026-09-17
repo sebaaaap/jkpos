@@ -15,7 +15,7 @@ import { paymentMethods } from "./pdv-data"
 import { Textarea } from "@/components/ui/textarea"
 import { usePaymentMethods } from "@/hooks/usePaymentMethods"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Wallet, Smartphone, UserCheck, HelpCircle, Banknote, CreditCard, ArrowLeftRight, CheckCircle2, Printer, Receipt, FileText } from "lucide-react"
+import { Wallet, Smartphone, UserCheck, HelpCircle, Banknote, CreditCard, ArrowLeftRight, CheckCircle2, Printer, Receipt, FileText, Loader2 } from "lucide-react"
 
 const paymentIconMap: Record<string, any> = {
   Wallet,
@@ -76,18 +76,23 @@ export function PdvPaymentModal({
     Math.ceil(total / 500) * 500,
   ].filter((v, i, a) => a.indexOf(v) === i && v >= total).slice(0, 4)
 
-  const handleConfirm = () => {
-    setIsPaid(true)
-    setTimeout(() => {
-      if (currentMethod) {
-        onConfirmPayment(currentMethod, amountPaid || total, documentType, comment)
-      }
-      setIsPaid(false)
+  const [isProcessing, setIsProcessing] = useState(false)
+
+  const handleConfirm = async () => {
+    if (!currentMethod || isProcessing) return
+    setIsProcessing(true)
+    try {
+      await onConfirmPayment(currentMethod, amountPaid || total, documentType, comment)
       setAmountInput("")
       if (methods && methods.length > 0) setSelectedMethod(methods[0])
       setDocumentType("boleta")
       setComment("")
-    }, 2000)
+      onClose()
+    } catch (e) {
+      console.error("Error al procesar pago:", e)
+    } finally {
+      setIsProcessing(false)
+    }
   }
 
   const handleClose = () => {
@@ -344,12 +349,21 @@ export function PdvPaymentModal({
             <div className="p-3 pt-0">
               <Button
                 onClick={handleConfirm}
-                disabled={!isValid}
+                disabled={!isValid || isProcessing}
                 className="w-full rounded-xl py-6 text-sm font-bold shadow-lg shadow-primary/25"
                 size="lg"
               >
-                <CheckCircle2 className="mr-2 h-5 w-5" />
-                Confirmar Pago
+                {isProcessing ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Procesando pago...
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle2 className="mr-2 h-5 w-5" />
+                    Confirmar Pago
+                  </>
+                )}
               </Button>
             </div>
           </div>
